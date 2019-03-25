@@ -1,16 +1,20 @@
 
-1.
-/*quantitat de registres de la taula de vols
-we could set ANSI_Nulls off here
-*/
 
+/* Queries to US airline Flights */
 
+/*1. quantitat de registres de la taula de vols*/
 SELECT 
 COUNT(*) FROM
  usflights.flights;
 
+/*2. Retard promidge de sortide i arribade segons l' aeroprt d' origen */
+SELECT Origin, AVG(ArrDelay) AS "avg_ArrDelayTime" , AVG(DepDelay) as "avg_DepDelayTime"
+FROM usflights.flights
+Group BY Origin
 
+/*3. Retard promig d’arribada dels vols, per mesos i segons l’aeroport origen. */
+SELECT Origin, Year, Month, DayofMonth, ArrDelay
+FROM flights
+ORDER BY Origin ASC
 
-2.
-Retard promige de sortida i arribada segons l’aeroport origen.
-
+/*4. Retard promig d’arribada dels vols, per mesos i segons l’aeroport origen  */
