@@ -13,8 +13,23 @@ FROM usflights.flights
 Group BY Origin
 
 /*3. Retard promig d’arribada dels vols, per mesos i segons l’aeroport origen. */
-SELECT Origin, Year, Month, DayofMonth, ArrDelay
+SELECT Origin, colYear, colMonth, DayOfMonths, ArrDelay
 FROM flights
 ORDER BY Origin ASC
 
 /*4. Retard promig d’arribada dels vols, per mesos i segons l’aeroport origen  */
+
+SELECT usairports.City, flights.colYear,flights.colMonth, ArrDelay
+FROM usairports, flights
+ORDER BY Origin
+
+SELECT usairports.City, flights.colYear,flights.colMonth, ArrDelay
+FROM usairports, flights
+ORDER BY usairports.City, flights.colYear
+LIMIT 10
+
+SELECT usairports.City, flights.colYear,flights.colMonth, flights.ArrDelay
+FROM flights
+INNER JOIN usairports
+ON flights.UniqueCarrier = usairports.IATA
+LIMIT 10
